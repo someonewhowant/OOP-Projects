@@ -1,6 +1,7 @@
 package com.grocerystore.repository.sqlite;
 
 import com.grocerystore.DatabaseManager;
+import com.grocerystore.exception.DataAccessException;
 import com.grocerystore.order.Order;
 import com.grocerystore.order.OrderItem;
 import com.grocerystore.repository.OrderRepository;
@@ -56,10 +57,10 @@ public class SqliteOrderRepository implements OrderRepository {
                 conn.commit(); // Подтверждение транзакции
             } catch (SQLException e) {
                 conn.rollback(); // Откат при любой ошибке
-                throw new RuntimeException("Error saving order, transaction rolled back", e);
+                throw new DataAccessException("Error saving order, transaction rolled back", e);
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Database error in OrderRepository", e);
+            throw new DataAccessException("Database error in OrderRepository", e);
         }
     }
 }

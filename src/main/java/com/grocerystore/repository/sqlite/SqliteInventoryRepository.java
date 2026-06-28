@@ -1,6 +1,7 @@
 package com.grocerystore.repository.sqlite;
 
 import com.grocerystore.DatabaseManager;
+import com.grocerystore.exception.DataAccessException;
 import com.grocerystore.repository.InventoryRepository;
 
 import java.sql.Connection;
@@ -18,7 +19,7 @@ public class SqliteInventoryRepository implements InventoryRepository {
             pstmt.setInt(2, quantity);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error saving stock to repository", e);
+            throw new DataAccessException("Error saving stock to repository", e);
         }
     }
 
@@ -34,7 +35,7 @@ public class SqliteInventoryRepository implements InventoryRepository {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving stock from repository", e);
+            throw new DataAccessException("Error retrieving stock from repository", e);
         }
         return 0;
     }

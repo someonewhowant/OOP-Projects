@@ -1,6 +1,7 @@
 package com.grocerystore.repository.sqlite;
 
 import com.grocerystore.DatabaseManager;
+import com.grocerystore.exception.DataAccessException;
 import com.grocerystore.model.Item;
 import com.grocerystore.repository.ItemRepository;
 
@@ -23,7 +24,7 @@ public class SqliteItemRepository implements ItemRepository {
             pstmt.setString(4, item.getPrice().toString());
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error saving item to repository", e);
+            throw new DataAccessException("Error saving item to repository", e);
         }
     }
 
@@ -35,7 +36,7 @@ public class SqliteItemRepository implements ItemRepository {
             pstmt.setString(1, barcode);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error deleting item from repository", e);
+            throw new DataAccessException("Error deleting item from repository", e);
         }
     }
 
@@ -57,7 +58,7 @@ public class SqliteItemRepository implements ItemRepository {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving item from repository", e);
+            throw new DataAccessException("Error retrieving item from repository", e);
         }
         return Optional.empty();
     }
