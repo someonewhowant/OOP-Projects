@@ -11,12 +11,17 @@ import com.grocerystore.order.Receipt;
 
 import java.math.BigDecimal;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class App {
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
+
     public static void main(String[] args) {
-        System.out.println("Initializing Database...");
+        logger.info("Initializing Database...");
         DatabaseManager.initializeDatabase();
 
-        System.out.println("Initializing Grocery Store System...");
+        logger.info("Initializing Grocery Store System...");
 
         GroceryStoreSystem store = new GroceryStoreSystem();
 
@@ -63,7 +68,7 @@ public class App {
             Receipt receipt = store.checkoutOrder(myOrder, new BigDecimal("15.00"));
             System.out.print(receipt.generateReceipt());
         } catch (Exception e) {
-            System.err.println("Error during checkout: " + e.getMessage());
+            logger.error("An error occurred: ", e);
         }
     }
 }

@@ -5,7 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class DatabaseManager {
+    private static final Logger logger = LoggerFactory.getLogger(DatabaseManager.class);
     private static final String URL = "jdbc:sqlite:grocerystore.db";
 
     public static Connection getConnection() throws SQLException {
@@ -49,7 +53,7 @@ public class DatabaseManager {
                     "FOREIGN KEY (order_id) REFERENCES orders(id))");
                     
         } catch (SQLException e) {
-            System.err.println("Failed to initialize database: " + e.getMessage());
+            logger.error("Failed to initialize database: {}", e.getMessage(), e);
         }
     }
 }

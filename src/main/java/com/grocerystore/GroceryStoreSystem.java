@@ -5,12 +5,9 @@ import com.grocerystore.model.Item;
 import com.grocerystore.order.Checkout;
 import com.grocerystore.order.Order;
 import com.grocerystore.order.Receipt;
-import com.grocerystore.repository.InventoryRepository;
-import com.grocerystore.repository.ItemRepository;
-import com.grocerystore.repository.OrderRepository;
-import com.grocerystore.repository.sqlite.SqliteInventoryRepository;
-import com.grocerystore.repository.sqlite.SqliteItemRepository;
-import com.grocerystore.repository.sqlite.SqliteOrderRepository;
+import com.grocerystore.repository.impl.InventoryRepositoryImpl;
+import com.grocerystore.repository.impl.ItemRepositoryImpl;
+import com.grocerystore.repository.impl.OrderRepositoryImpl;
 import com.grocerystore.service.CatalogService;
 import com.grocerystore.service.InventoryService;
 
@@ -23,9 +20,9 @@ public class GroceryStoreSystem {
 
     public GroceryStoreSystem() {
         // Dependency Injection
-        ItemRepository itemRepository = new SqliteItemRepository();
-        InventoryRepository inventoryRepository = new SqliteInventoryRepository();
-        OrderRepository orderRepository = new SqliteOrderRepository();
+        ItemRepository itemRepository = new ItemRepositoryImpl();
+        InventoryRepository inventoryRepository = new InventoryRepositoryImpl();
+        OrderRepository orderRepository = new OrderRepositoryImpl();
         
         this.catalogService = new CatalogService(itemRepository);
         this.inventoryService = new InventoryService(inventoryRepository, this.catalogService);
