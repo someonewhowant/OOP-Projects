@@ -29,6 +29,25 @@ public class DatabaseManager {
                     "quantity INTEGER NOT NULL DEFAULT 0," +
                     "FOREIGN KEY (barcode) REFERENCES items(barcode))");
                     
+            // Create orders table
+            stmt.execute("CREATE TABLE IF NOT EXISTS orders (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "subtotal TEXT NOT NULL," +
+                    "discount TEXT NOT NULL," +
+                    "total TEXT NOT NULL," +
+                    "created_at DATETIME DEFAULT CURRENT_TIMESTAMP)");
+
+            // Create order_items table
+            stmt.execute("CREATE TABLE IF NOT EXISTS order_items (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "order_id INTEGER NOT NULL," +
+                    "barcode TEXT NOT NULL," +
+                    "name TEXT NOT NULL," +
+                    "quantity INTEGER NOT NULL," +
+                    "price TEXT NOT NULL," +
+                    "subtotal TEXT NOT NULL," +
+                    "FOREIGN KEY (order_id) REFERENCES orders(id))");
+                    
         } catch (SQLException e) {
             System.err.println("Failed to initialize database: " + e.getMessage());
         }

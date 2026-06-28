@@ -7,8 +7,10 @@ import com.grocerystore.order.Order;
 import com.grocerystore.order.Receipt;
 import com.grocerystore.repository.InventoryRepository;
 import com.grocerystore.repository.ItemRepository;
+import com.grocerystore.repository.OrderRepository;
 import com.grocerystore.repository.sqlite.SqliteInventoryRepository;
 import com.grocerystore.repository.sqlite.SqliteItemRepository;
+import com.grocerystore.repository.sqlite.SqliteOrderRepository;
 import com.grocerystore.service.CatalogService;
 import com.grocerystore.service.InventoryService;
 
@@ -23,10 +25,11 @@ public class GroceryStoreSystem {
         // Dependency Injection
         ItemRepository itemRepository = new SqliteItemRepository();
         InventoryRepository inventoryRepository = new SqliteInventoryRepository();
+        OrderRepository orderRepository = new SqliteOrderRepository();
         
         this.catalogService = new CatalogService(itemRepository);
         this.inventoryService = new InventoryService(inventoryRepository, this.catalogService);
-        this.checkout = new Checkout(this.catalogService, this.inventoryService);
+        this.checkout = new Checkout(this.catalogService, this.inventoryService, orderRepository);
     }
 
     public void addItemToCatalog(Item item) {

@@ -8,12 +8,21 @@ import java.util.Collections;
 import java.util.List;
 
 public class Order {
+    private Long id;
     private final List<OrderItem> items;
     private final List<DiscountCampaign> appliedCampaigns;
 
     public Order() {
         this.items = new ArrayList<>();
         this.appliedCampaigns = new ArrayList<>();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void addItem(OrderItem item) {

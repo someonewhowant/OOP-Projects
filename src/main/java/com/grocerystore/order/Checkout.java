@@ -4,6 +4,7 @@ import com.grocerystore.discount.DiscountCampaign;
 import com.grocerystore.exception.ItemNotFoundException;
 import com.grocerystore.exception.PaymentFailedException;
 import com.grocerystore.model.Item;
+import com.grocerystore.repository.OrderRepository;
 import com.grocerystore.service.CatalogService;
 import com.grocerystore.service.InventoryService;
 
@@ -15,11 +16,13 @@ import java.util.Optional;
 public class Checkout {
     private final CatalogService catalogService;
     private final InventoryService inventoryService;
+    private final OrderRepository orderRepository;
     private final List<DiscountCampaign> activeCampaigns;
 
-    public Checkout(CatalogService catalogService, InventoryService inventoryService) {
+    public Checkout(CatalogService catalogService, InventoryService inventoryService, OrderRepository orderRepository) {
         this.catalogService = catalogService;
         this.inventoryService = inventoryService;
+        this.orderRepository = orderRepository;
         this.activeCampaigns = new ArrayList<>();
     }
 
@@ -50,6 +53,8 @@ public class Checkout {
         if (amountPaid.compareTo(total) < 0) {
             throw new PaymentFailedException("Insufficient amount paid");
         }
+
+        orderRepository.save(order);
 
         return new Receipt(order, amountPaid);
     }
