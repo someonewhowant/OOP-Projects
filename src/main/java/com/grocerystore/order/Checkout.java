@@ -1,6 +1,7 @@
 package com.grocerystore.order;
 
 import com.grocerystore.discount.DiscountCampaign;
+import com.grocerystore.exception.InsufficientStockException;
 import com.grocerystore.exception.ItemNotFoundException;
 import com.grocerystore.exception.PaymentFailedException;
 import com.grocerystore.model.Item;
@@ -40,7 +41,7 @@ public class Checkout {
             throw new ItemNotFoundException("Item with barcode " + barcode + " not found in catalog");
         }
         
-        inventoryService.reduceStock(barcode, quantity);
+        // Временно не списываем товар здесь. Списание произойдет при успешной оплате.
         order.addItem(new OrderItem(itemOpt.get(), quantity));
     }
 
@@ -54,6 +55,20 @@ public class Checkout {
             throw new PaymentFailedException("Insufficient amount paid");
         }
 
+        // 1. Проверяем наличие всех товаров перед списанием
+        for (OrderItem orderItem : order.getItems()) {
+            int currentStock = inventoryService.getStock(orderItem.getItem().getBarcode());
+            if (currentStock < orderItem.getQuantity()) {
+                throw new InsufficientStockException("Not enough stock for barcode " + orderItem.getItem().getBarcode());
+            }
+        }
+
+        // 2. Списываем товары со склада (если проверка пройдена успешно)
+        for (OrderItem orderItem : order.getItems()) {
+            inventoryService.reduceStock(orderItem.getItem().getBarcode(), orderItem.getQuantity());
+        }
+
+        // 3. Сохраняем заказ в базу данных
         orderRepository.save(order);
 
         return new Receipt(order, amountPaid);
