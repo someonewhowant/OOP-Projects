@@ -11,18 +11,20 @@ public class Receipt {
         this.amountPaid = amountPaid;
     }
 
-    public void printReceipt() {
-        System.out.println("=== GROCERY STORE RECEIPT ===");
+    public String generateReceipt() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("=== GROCERY STORE RECEIPT ===\n");
         for (OrderItem item : order.getItems()) {
-            System.out.printf("%s x %d - $%.2f%n", item.getItem().getName(), item.getQuantity(), item.getSubtotal());
+            sb.append(String.format("%s x %d - $%.2f%n", item.getItem().getName(), item.getQuantity(), item.getSubtotal()));
         }
-        System.out.println("-----------------------------");
-        System.out.printf("Subtotal: $%.2f%n", order.calculateSubtotal());
-        System.out.printf("Discount: -$%.2f%n", order.calculateTotalDiscount());
-        System.out.printf("Total:    $%.2f%n", order.calculateTotal());
-        System.out.println("-----------------------------");
-        System.out.printf("Paid:     $%.2f%n", amountPaid);
-        System.out.printf("Change:   $%.2f%n", amountPaid.subtract(order.calculateTotal()));
-        System.out.println("=============================");
+        sb.append("-----------------------------\n");
+        sb.append(String.format("Subtotal: $%.2f%n", order.calculateSubtotal()));
+        sb.append(String.format("Discount: -$%.2f%n", order.calculateTotalDiscount()));
+        sb.append(String.format("Total:    $%.2f%n", order.calculateTotal()));
+        sb.append("-----------------------------\n");
+        sb.append(String.format("Paid:     $%.2f%n", amountPaid));
+        sb.append(String.format("Change:   $%.2f%n", amountPaid.subtract(order.calculateTotal())));
+        sb.append("=============================\n");
+        return sb.toString();
     }
 }

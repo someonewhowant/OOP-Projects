@@ -58,7 +58,7 @@ public class App {
 
             // 5. Оплата
             Receipt receipt = store.checkoutOrder(myOrder, new BigDecimal("15.00"));
-            receipt.printReceipt();
+            System.out.print(receipt.generateReceipt());
         } catch (Exception e) {
             System.err.println("Error during checkout: " + e.getMessage());
         }
