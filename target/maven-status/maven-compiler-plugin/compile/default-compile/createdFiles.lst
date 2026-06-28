@@ -5,6 +5,7 @@ com/grocerystore/exception/PaymentFailedException.class
 com/grocerystore/exception/ItemNotFoundException.class
 com/grocerystore/order/OrderItem.class
 com/grocerystore/discount/DiscountCalculationStrategy.class
+com/grocerystore/DatabaseManager.class
 com/grocerystore/App.class
 com/grocerystore/discount/DiscountCampaign.class
 com/grocerystore/order/Receipt.class

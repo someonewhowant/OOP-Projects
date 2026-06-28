@@ -1,7 +1,8 @@
-package com.grocerystore.model;
+package com.grocerystore.repository.sqlite;
 
 import com.grocerystore.DatabaseManager;
-import com.grocerystore.exception.ItemNotFoundException;
+import com.grocerystore.model.Item;
+import com.grocerystore.repository.ItemRepository;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -10,9 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class Catalog {
-
-    public void addItem(Item item) {
+public class SqliteItemRepository implements ItemRepository {
+    @Override
+    public void save(Item item) {
         String sql = "INSERT OR REPLACE INTO items (barcode, name, category, price) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -22,29 +23,24 @@ public class Catalog {
             pstmt.setString(4, item.getPrice().toString());
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error adding item to catalog", e);
+            throw new RuntimeException("Error saving item to repository", e);
         }
     }
 
-    public void updateItem(Item item) {
-        if (getItem(item.getBarcode()).isEmpty()) {
-            throw new ItemNotFoundException("Item with barcode " + item.getBarcode() + " not found in catalog");
-        }
-        addItem(item); // Since it uses INSERT OR REPLACE
-    }
-
-    public void deleteItem(String barcode) {
+    @Override
+    public void delete(String barcode) {
         String sql = "DELETE FROM items WHERE barcode = ?";
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, barcode);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error deleting item from catalog", e);
+            throw new RuntimeException("Error deleting item from repository", e);
         }
     }
 
-    public Optional<Item> getItem(String barcode) {
+    @Override
+    public Optional<Item> findByBarcode(String barcode) {
         String sql = "SELECT name, barcode, category, price FROM items WHERE barcode = ?";
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -61,7 +57,7 @@ public class Catalog {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving item from catalog", e);
+            throw new RuntimeException("Error retrieving item from repository", e);
         }
         return Optional.empty();
     }

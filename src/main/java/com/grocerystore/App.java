@@ -13,6 +13,9 @@ import java.math.BigDecimal;
 
 public class App {
     public static void main(String[] args) {
+        System.out.println("Initializing Database...");
+        DatabaseManager.initializeDatabase();
+
         System.out.println("Initializing Grocery Store System...");
 
         GroceryStoreSystem store = new GroceryStoreSystem();
