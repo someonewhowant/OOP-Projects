@@ -1,5 +1,6 @@
 package com.grocerystore.model;
 
+import com.grocerystore.exception.ItemNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -19,7 +20,7 @@ public class Catalog {
         if (items.containsKey(item.getBarcode())) {
             items.put(item.getBarcode(), item);
         } else {
-            throw new IllegalArgumentException("Item with barcode " + item.getBarcode() + " not found in catalog");
+            throw new ItemNotFoundException("Item with barcode " + item.getBarcode() + " not found in catalog");
         }
     }
 

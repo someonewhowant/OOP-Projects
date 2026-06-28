@@ -1,5 +1,7 @@
 package com.grocerystore.model;
 
+import com.grocerystore.exception.InsufficientStockException;
+import com.grocerystore.exception.ItemNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +16,7 @@ public class Inventory {
 
     public void addStock(String barcode, int quantity) {
         if (catalog.getItem(barcode).isEmpty()) {
-            throw new IllegalArgumentException("Item with barcode " + barcode + " not found in catalog");
+            throw new ItemNotFoundException("Item with barcode " + barcode + " not found in catalog");
         }
         stock.put(barcode, stock.getOrDefault(barcode, 0) + quantity);
     }
@@ -22,7 +24,7 @@ public class Inventory {
     public void reduceStock(String barcode, int quantity) {
         int currentStock = stock.getOrDefault(barcode, 0);
         if (currentStock < quantity) {
-            throw new IllegalStateException("Not enough stock for barcode " + barcode);
+            throw new InsufficientStockException("Not enough stock for barcode " + barcode);
         }
         stock.put(barcode, currentStock - quantity);
     }

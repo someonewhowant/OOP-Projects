@@ -1,6 +1,8 @@
 package com.grocerystore.order;
 
 import com.grocerystore.discount.DiscountCampaign;
+import com.grocerystore.exception.ItemNotFoundException;
+import com.grocerystore.exception.PaymentFailedException;
 import com.grocerystore.model.Catalog;
 import com.grocerystore.model.Inventory;
 import com.grocerystore.model.Item;
@@ -32,7 +34,7 @@ public class Checkout {
     public void scanItem(Order order, String barcode, int quantity) {
         Optional<Item> itemOpt = catalog.getItem(barcode);
         if (itemOpt.isEmpty()) {
-            throw new IllegalArgumentException("Item with barcode " + barcode + " not found in catalog");
+            throw new ItemNotFoundException("Item with barcode " + barcode + " not found in catalog");
         }
         
         inventory.reduceStock(barcode, quantity);
@@ -46,7 +48,7 @@ public class Checkout {
 
         BigDecimal total = order.calculateTotal();
         if (amountPaid.compareTo(total) < 0) {
-            throw new IllegalArgumentException("Insufficient amount paid");
+            throw new PaymentFailedException("Insufficient amount paid");
         }
 
         return new Receipt(order, amountPaid);

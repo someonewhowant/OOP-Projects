@@ -3,10 +3,10 @@ package com.grocerystore.model;
 import java.math.BigDecimal;
 
 public class Item {
-    private String name;
-    private String barcode;
-    private String category;
-    private BigDecimal price;
+    private final String name;
+    private final String barcode;
+    private final String category;
+    private final BigDecimal price;
 
     public Item(String name, String barcode, String category, BigDecimal price) {
         this.name = name;
@@ -19,31 +19,15 @@ public class Item {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getBarcode() {
         return barcode;
-    }
-
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
     }
 
     public String getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public BigDecimal getPrice() {
         return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
     }
 }
