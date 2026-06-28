@@ -1,10 +1,12 @@
 package com.grocerystore.order;
 
+import java.math.BigDecimal;
+
 public class Receipt {
     private final Order order;
-    private final double amountPaid;
+    private final BigDecimal amountPaid;
 
-    public Receipt(Order order, double amountPaid) {
+    public Receipt(Order order, BigDecimal amountPaid) {
         this.order = order;
         this.amountPaid = amountPaid;
     }
@@ -20,7 +22,7 @@ public class Receipt {
         System.out.printf("Total:    $%.2f%n", order.calculateTotal());
         System.out.println("-----------------------------");
         System.out.printf("Paid:     $%.2f%n", amountPaid);
-        System.out.printf("Change:   $%.2f%n", amountPaid - order.calculateTotal());
+        System.out.printf("Change:   $%.2f%n", amountPaid.subtract(order.calculateTotal()));
         System.out.println("=============================");
     }
 }

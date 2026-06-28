@@ -9,6 +9,8 @@ import com.grocerystore.model.Item;
 import com.grocerystore.order.Order;
 import com.grocerystore.order.Receipt;
 
+import java.math.BigDecimal;
+
 public class App {
     public static void main(String[] args) {
         System.out.println("Initializing Grocery Store System...");
@@ -16,9 +18,9 @@ public class App {
         GroceryStoreSystem store = new GroceryStoreSystem();
 
         // 1. Управление каталогом
-        Item apple = new Item("Apple", "12345", "Fruits", 1.50);
-        Item milk = new Item("Milk", "67890", "Dairy", 2.00);
-        Item bread = new Item("Bread", "11111", "Bakery", 1.20);
+        Item apple = new Item("Apple", "12345", "Fruits", new BigDecimal("1.50"));
+        Item milk = new Item("Milk", "67890", "Dairy", new BigDecimal("2.00"));
+        Item bread = new Item("Bread", "11111", "Bakery", new BigDecimal("1.20"));
         
         store.addItemToCatalog(apple);
         store.addItemToCatalog(milk);
@@ -33,12 +35,12 @@ public class App {
         // 10% off on all Dairy
         DiscountCampaign dairyDiscount = new DiscountCampaign(
                 new CategoryBasedCriteria("Dairy"),
-                new PercentageDiscountStrategy(10)
+                new PercentageDiscountStrategy(new BigDecimal("10"))
         );
         // $0.50 off on Bread
         DiscountCampaign breadDiscount = new DiscountCampaign(
                 new ItemBasedCriteria("11111"),
-                new FixedAmountDiscountStrategy(0.50)
+                new FixedAmountDiscountStrategy(new BigDecimal("0.50"))
         );
         
         store.addCampaign(dairyDiscount);
@@ -55,7 +57,7 @@ public class App {
             // Total = 11.80
 
             // 5. Оплата
-            Receipt receipt = store.checkoutOrder(myOrder, 15.00);
+            Receipt receipt = store.checkoutOrder(myOrder, new BigDecimal("15.00"));
             receipt.printReceipt();
         } catch (Exception e) {
             System.err.println("Error during checkout: " + e.getMessage());

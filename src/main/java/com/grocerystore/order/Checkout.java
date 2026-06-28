@@ -5,6 +5,7 @@ import com.grocerystore.model.Catalog;
 import com.grocerystore.model.Inventory;
 import com.grocerystore.model.Item;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,13 +39,13 @@ public class Checkout {
         order.addItem(new OrderItem(itemOpt.get(), quantity));
     }
 
-    public Receipt processPayment(Order order, double amountPaid) {
+    public Receipt processPayment(Order order, BigDecimal amountPaid) {
         for (DiscountCampaign campaign : activeCampaigns) {
             order.applyCampaign(campaign);
         }
 
-        double total = order.calculateTotal();
-        if (amountPaid < total) {
+        BigDecimal total = order.calculateTotal();
+        if (amountPaid.compareTo(total) < 0) {
             throw new IllegalArgumentException("Insufficient amount paid");
         }
 

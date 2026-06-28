@@ -24,7 +24,7 @@ public class Catalog {
     }
 
     public void deleteItem(String barcode) {
-        items.remove(barcode);1
+        items.remove(barcode);
     }
 
     public Optional<Item> getItem(String barcode) {

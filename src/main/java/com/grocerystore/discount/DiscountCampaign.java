@@ -1,6 +1,7 @@
 package com.grocerystore.discount;
 
 import com.grocerystore.model.Item;
+import java.math.BigDecimal;
 
 public class DiscountCampaign {
     private final DiscountCriteria criteria;
@@ -14,11 +15,11 @@ public class DiscountCampaign {
     public boolean isApplicable(Item item) {
         return criteria.isApplicable(item);
     }
-`
-    public double applyDiscount(Item item, double price, int quantity) {
+
+    public BigDecimal applyDiscount(Item item, BigDecimal price, int quantity) {
         if (isApplicable(item)) {
             return strategy.calculateDiscount(price, quantity);
         }
-        return 0.0;
+        return BigDecimal.ZERO;
     }
 }

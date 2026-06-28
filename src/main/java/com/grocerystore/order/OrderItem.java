@@ -1,6 +1,7 @@
 package com.grocerystore.order;
 
 import com.grocerystore.model.Item;
+import java.math.BigDecimal;
 
 public class OrderItem {
     private final Item item;
@@ -22,7 +23,7 @@ public class OrderItem {
         return quantity;
     }
 
-    public double getSubtotal() {
-        return item.getPrice() * quantity;
+    public BigDecimal getSubtotal() {
+        return item.getPrice().multiply(BigDecimal.valueOf(quantity));
     }
 }

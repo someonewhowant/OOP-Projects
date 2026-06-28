@@ -1,5 +1,7 @@
 package com.grocerystore.discount;
 
+import java.math.BigDecimal;
+
 public interface DiscountCalculationStrategy {
-    double calculateDiscount(double price, int quantity);
+    BigDecimal calculateDiscount(BigDecimal price, int quantity);
 }

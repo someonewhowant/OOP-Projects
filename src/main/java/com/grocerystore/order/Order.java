@@ -2,6 +2,7 @@ package com.grocerystore.order;
 
 import com.grocerystore.discount.DiscountCampaign;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,26 +32,29 @@ public class Order {
         return Collections.unmodifiableList(appliedCampaigns);
     }
 
-    public double calculateSubtotal() {
+    public BigDecimal calculateSubtotal() {
         return items.stream()
-                .mapToDouble(OrderItem::getSubtotal)
-                .sum();
+                .map(OrderItem::getSubtotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public double calculateTotal() {
-        double subtotal = calculateSubtotal();
-        double totalDiscount = 0.0;
+    public BigDecimal calculateTotal() {
+        BigDecimal subtotal = calculateSubtotal();
+        BigDecimal totalDiscount = BigDecimal.ZERO;
 
         for (OrderItem orderItem : items) {
             for (DiscountCampaign campaign : appliedCampaigns) {
-                totalDiscount += campaign.applyDiscount(orderItem.getItem(), orderItem.getItem().getPrice(), orderItem.getQuantity());
+                totalDiscount = totalDiscount.add(
+                    campaign.applyDiscount(orderItem.getItem(), orderItem.getItem().getPrice(), orderItem.getQuantity())
+                );
             }
         }
 
-        return Math.max(0, subtotal - totalDiscount);
+        BigDecimal total = subtotal.subtract(totalDiscount);
+        return total.compareTo(BigDecimal.ZERO) < 0 ? BigDecimal.ZERO : total;
     }
 
-    public double calculateTotalDiscount() {
-        return calculateSubtotal() - calculateTotal();
+    public BigDecimal calculateTotalDiscount() {
+        return calculateSubtotal().subtract(calculateTotal());
     }
 }

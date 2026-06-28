@@ -8,6 +8,8 @@ import com.grocerystore.order.Checkout;
 import com.grocerystore.order.Order;
 import com.grocerystore.order.Receipt;
 
+import java.math.BigDecimal;
+
 public class GroceryStoreSystem {
     private final Catalog catalog;
     private final Inventory inventory;
@@ -39,7 +41,7 @@ public class GroceryStoreSystem {
         checkout.scanItem(order, barcode, quantity);
     }
 
-    public Receipt checkoutOrder(Order order, double amountPaid) {
+    public Receipt checkoutOrder(Order order, BigDecimal amountPaid) {
         return checkout.processPayment(order, amountPaid);
     }
 }

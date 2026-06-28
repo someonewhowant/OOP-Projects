@@ -1,12 +1,14 @@
 package com.grocerystore.model;
 
+import java.math.BigDecimal;
+
 public class Item {
     private String name;
     private String barcode;
     private String category;
-    private double price;
+    private BigDecimal price;
 
-    public Item(String name, String barcode, String category, double price) {
+    public Item(String name, String barcode, String category, BigDecimal price) {
         this.name = name;
         this.barcode = barcode;
         this.category = category;
@@ -37,11 +39,11 @@ public class Item {
         this.category = category;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }

@@ -1,17 +1,19 @@
 package com.grocerystore.discount;
 
-public class FixedAmountDiscountStrategy implements DiscountCalculationStrategy {
-    private final double fixedAmount;
+import java.math.BigDecimal;
 
-    public FixedAmountDiscountStrategy(double fixedAmount) {
-        if (fixedAmount < 0) {
+public class FixedAmountDiscountStrategy implements DiscountCalculationStrategy {
+    private final BigDecimal fixedAmount;
+
+    public FixedAmountDiscountStrategy(BigDecimal fixedAmount) {
+        if (fixedAmount.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Fixed amount cannot be negative");
         }
         this.fixedAmount = fixedAmount;
     }
 
     @Override
-    public double calculateDiscount(double price, int quantity) {
-        return fixedAmount * quantity;
+    public BigDecimal calculateDiscount(BigDecimal price, int quantity) {
+        return fixedAmount.multiply(BigDecimal.valueOf(quantity));
     }
 }

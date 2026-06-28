@@ -1,17 +1,22 @@
 package com.grocerystore.discount;
 
-public class PercentageDiscountStrategy implements DiscountCalculationStrategy {
-    private final double percentage;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
-    public PercentageDiscountStrategy(double percentage) {
-        if (percentage < 0 || percentage > 100) {
+public class PercentageDiscountStrategy implements DiscountCalculationStrategy {
+    private final BigDecimal percentage;
+
+    public PercentageDiscountStrategy(BigDecimal percentage) {
+        if (percentage.compareTo(BigDecimal.ZERO) < 0 || percentage.compareTo(new BigDecimal("100")) > 0) {
             throw new IllegalArgumentException("Percentage must be between 0 and 100");
         }
         this.percentage = percentage;
     }
 
     @Override
-    public double calculateDiscount(double price, int quantity) {
-        return price * quantity * (percentage / 100.0);
+    public BigDecimal calculateDiscount(BigDecimal price, int quantity) {
+        BigDecimal totalAmount = price.multiply(BigDecimal.valueOf(quantity));
+        BigDecimal fraction = percentage.divide(new BigDecimal("100"), 4, RoundingMode.HALF_UP);
+        return totalAmount.multiply(fraction).setScale(2, RoundingMode.HALF_UP);
     }
 }
