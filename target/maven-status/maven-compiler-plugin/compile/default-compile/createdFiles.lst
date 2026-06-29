@@ -1,6 +1,6 @@
+com/grocerystore/exception/DataAccessException.class
 com/grocerystore/GroceryStoreSystem.class
-com/grocerystore/repository/sqlite/SqliteOrderRepository.class
-com/grocerystore/repository/sqlite/SqliteItemRepository.class
+com/grocerystore/repository/impl/OrderRepositoryImpl.class
 com/grocerystore/discount/DiscountCriteria.class
 com/grocerystore/discount/CategoryBasedCriteria.class
 com/grocerystore/order/OrderItem.class
@@ -10,10 +10,10 @@ com/grocerystore/discount/DiscountCampaign.class
 com/grocerystore/model/Inventory.class
 com/grocerystore/order/Order.class
 com/grocerystore/model/Catalog.class
+com/grocerystore/repository/impl/InventoryRepositoryImpl.class
 com/grocerystore/repository/OrderRepository.class
 com/grocerystore/exception/PaymentFailedException.class
 com/grocerystore/exception/ItemNotFoundException.class
-com/grocerystore/repository/sqlite/SqliteInventoryRepository.class
 com/grocerystore/discount/DiscountCalculationStrategy.class
 com/grocerystore/App.class
 com/grocerystore/order/Receipt.class
@@ -24,5 +24,6 @@ com/grocerystore/repository/ItemRepository.class
 com/grocerystore/model/Item.class
 com/grocerystore/discount/FixedAmountDiscountStrategy.class
 com/grocerystore/repository/InventoryRepository.class
+com/grocerystore/repository/impl/ItemRepositoryImpl.class
 com/grocerystore/discount/PercentageDiscountStrategy.class
 com/grocerystore/exception/InsufficientStockException.class
