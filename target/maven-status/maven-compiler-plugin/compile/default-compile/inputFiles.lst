@@ -1,6 +1,7 @@
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/exception/PaymentFailedException.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/exception/InsufficientStockException.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/repository/ItemRepository.java
+/home/admin/oop/grocerystore/src/main/java/com/grocerystore/shell/CheckoutCommands.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/order/Order.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/discount/ItemBasedCriteria.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/order/Checkout.java
@@ -23,6 +24,7 @@
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/repository/impl/ItemRepositoryImpl.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/repository/OrderRepository.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/DatabaseManager.java
+/home/admin/oop/grocerystore/src/main/java/com/grocerystore/shell/GuideCommands.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/exception/DataAccessException.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/shell/AdminCommands.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/App.java

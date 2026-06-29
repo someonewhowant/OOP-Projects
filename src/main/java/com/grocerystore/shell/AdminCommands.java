@@ -19,32 +19,27 @@ public class AdminCommands {
         this.inventoryService = inventoryService;
     }
 
-    @ShellMethod(key = "add-item", value = "Add a new item to the catalog")
-    public String addItem(
-            @ShellOption(help = "Item barcode") String barcode,
-            @ShellOption(help = "Item name") String name,
-            @ShellOption(help = "Item category") String category,
-            @ShellOption(help = "Item price") double price) {
-        
+    @ShellMethod(key = {"item add", "add-item"}, value = "Add a new item to the catalog")
+    public String addItem(String barcode, String name, String category, double price) {
         Item item = new Item(name, barcode, category, BigDecimal.valueOf(price));
         catalogService.addItem(item);
-        return String.format("Successfully added item: %s (%s)", name, barcode);
+        return String.format("✅ Item added: %s (%s) - $%s", name, barcode, price);
     }
 
-    @ShellMethod(key = "add-stock", value = "Add quantity to stock")
-    public String addStock(
-            @ShellOption(help = "Item barcode") String barcode,
-            @ShellOption(help = "Quantity to add") int quantity) {
-        
-        inventoryService.addStock(barcode, quantity);
-        return String.format("Successfully added %d items to stock for barcode %s", quantity, barcode);
+    @ShellMethod(key = {"stock add", "add-stock"}, value = "Add quantity to stock")
+    public String addStock(String barcode, int quantity) {
+        try {
+            inventoryService.addStock(barcode, quantity);
+            return String.format("📦 Added %d units to barcode %s. New total: %d", 
+                    quantity, barcode, inventoryService.getStock(barcode));
+        } catch (Exception e) {
+            return "❌ Error: " + e.getMessage();
+        }
     }
 
-    @ShellMethod(key = "view-stock", value = "View current stock for an item")
-    public String viewStock(
-            @ShellOption(help = "Item barcode") String barcode) {
-        
+    @ShellMethod(key = {"stock view", "view-stock"}, value = "View current stock for an item")
+    public String viewStock(String barcode) {
         int stock = inventoryService.getStock(barcode);
-        return String.format("Current stock for barcode %s is: %d", barcode, stock);
+        return String.format("📊 Current stock for barcode %s: %d units", barcode, stock);
     }
 }
