@@ -4,6 +4,7 @@ import com.grocerystore.exception.ItemNotFoundException;
 import com.grocerystore.model.Item;
 import com.grocerystore.repository.ItemRepository;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 import java.util.Optional;
 
@@ -32,5 +33,9 @@ public class CatalogService {
 
     public Optional<Item> getItem(String barcode) {
         return itemRepository.findByBarcode(barcode);
+    }
+
+    public List<Item> getAllItems() {
+        return itemRepository.findAll();
     }
 }

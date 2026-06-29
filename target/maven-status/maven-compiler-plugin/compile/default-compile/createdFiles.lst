@@ -17,6 +17,7 @@ com/grocerystore/exception/ItemNotFoundException.class
 com/grocerystore/discount/DiscountCalculationStrategy.class
 com/grocerystore/App.class
 com/grocerystore/shell/CheckoutCommands.class
+com/grocerystore/shell/CampaignCommands.class
 com/grocerystore/order/Receipt.class
 com/grocerystore/order/Checkout.class
 com/grocerystore/service/CatalogService.class

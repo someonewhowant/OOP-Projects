@@ -23,6 +23,7 @@
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/service/CatalogService.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/repository/impl/ItemRepositoryImpl.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/repository/OrderRepository.java
+/home/admin/oop/grocerystore/src/main/java/com/grocerystore/shell/CampaignCommands.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/DatabaseManager.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/shell/GuideCommands.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/exception/DataAccessException.java

@@ -34,6 +34,10 @@ public class Checkout {
         this.activeCampaigns.add(campaign);
     }
 
+    public List<DiscountCampaign> getActiveCampaigns() {
+        return this.activeCampaigns;
+    }
+
     public Order createOrder() {
         return new Order();
     }

@@ -34,4 +34,8 @@ public class InventoryService {
     public int getStock(String barcode) {
         return inventoryRepository.getStock(barcode);
     }
+
+    public java.util.Map<String, Integer> getAllStock() {
+        return inventoryRepository.findAllStock();
+    }
 }

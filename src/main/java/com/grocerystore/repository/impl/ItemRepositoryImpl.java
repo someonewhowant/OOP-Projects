@@ -38,4 +38,15 @@ public class ItemRepositoryImpl implements ItemRepository {
                 new BigDecimal(rs.getString("price"))
         ), barcode).stream().findFirst();
     }
+
+    @Override
+    public java.util.List<Item> findAll() {
+        String sql = "SELECT name, barcode, category, price FROM items";
+        return jdbcTemplate.query(sql, (rs, rowNum) -> new Item(
+                rs.getString("name"),
+                rs.getString("barcode"),
+                rs.getString("category"),
+                new BigDecimal(rs.getString("price"))
+        ));
+    }
 }
