@@ -5,9 +5,7 @@
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/discount/ItemBasedCriteria.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/order/Checkout.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/service/InventoryService.java
-/home/admin/oop/grocerystore/src/main/java/com/grocerystore/model/Inventory.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/exception/ItemNotFoundException.java
-/home/admin/oop/grocerystore/src/main/java/com/grocerystore/model/Catalog.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/discount/PercentageDiscountStrategy.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/discount/DiscountCalculationStrategy.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/discount/DiscountCampaign.java
@@ -26,4 +24,5 @@
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/repository/OrderRepository.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/DatabaseManager.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/exception/DataAccessException.java
+/home/admin/oop/grocerystore/src/main/java/com/grocerystore/shell/AdminCommands.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/App.java

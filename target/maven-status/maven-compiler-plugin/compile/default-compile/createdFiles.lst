@@ -7,10 +7,9 @@ com/grocerystore/order/OrderItem.class
 com/grocerystore/DatabaseManager.class
 com/grocerystore/service/InventoryService.class
 com/grocerystore/discount/DiscountCampaign.class
-com/grocerystore/model/Inventory.class
 com/grocerystore/order/Order.class
-com/grocerystore/model/Catalog.class
 com/grocerystore/repository/impl/InventoryRepositoryImpl.class
+com/grocerystore/shell/AdminCommands.class
 com/grocerystore/repository/OrderRepository.class
 com/grocerystore/exception/PaymentFailedException.class
 com/grocerystore/exception/ItemNotFoundException.class
