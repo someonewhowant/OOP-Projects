@@ -4,6 +4,7 @@ import com.grocerystore.repository.InventoryRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import java.util.Map;
+import java.util.HashMap;
 
 @Repository
 public class InventoryRepositoryImpl implements InventoryRepository {

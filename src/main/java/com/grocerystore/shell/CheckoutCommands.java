@@ -26,7 +26,7 @@ public class CheckoutCommands {
 
     @ShellMethod(key = {"scan", "add"}, value = "Scan an item into the current order")
     public String scanItem(
-            @ShellOption(help = "Item barcode") String barcode,
+            @ShellOption(valueProvider = BarcodeValueProvider.class, help = "Item barcode") String barcode,
             @ShellOption(defaultValue = "1", help = "Quantity") int quantity) {
         
         if (currentOrder == null) {

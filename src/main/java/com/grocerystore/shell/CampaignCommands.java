@@ -4,6 +4,7 @@ import com.grocerystore.discount.*;
 import com.grocerystore.order.Checkout;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellOption;
 
 import java.math.BigDecimal;
 
@@ -28,7 +29,9 @@ public class CampaignCommands {
     }
 
     @ShellMethod(key = {"discount add-item"}, value = "Add a fixed amount discount for a specific item")
-    public String addItemDiscount(String barcode, double amount) {
+    public String addItemDiscount(
+            @ShellOption(valueProvider = BarcodeValueProvider.class) String barcode, 
+            double amount) {
         String desc = String.format("$%s off on item %s", amount, barcode);
         DiscountCampaign campaign = new DiscountCampaign(
                 desc,

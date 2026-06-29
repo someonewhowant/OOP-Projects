@@ -31,7 +31,7 @@ public class AdminCommands {
     }
 
     @ShellMethod(key = {"stock add", "add-stock"}, value = "Add quantity to stock")
-    public String addStock(String barcode, int quantity) {
+    public String addStock(@ShellOption(valueProvider = BarcodeValueProvider.class) String barcode, int quantity) {
         try {
             inventoryService.addStock(barcode, quantity);
             return String.format("📦 Added %d units to barcode %s. New total: %d", 
@@ -42,7 +42,7 @@ public class AdminCommands {
     }
 
     @ShellMethod(key = {"stock view", "view-stock"}, value = "View current stock for an item")
-    public String viewStock(String barcode) {
+    public String viewStock(@ShellOption(valueProvider = BarcodeValueProvider.class) String barcode) {
         int stock = inventoryService.getStock(barcode);
         return String.format("📊 Current stock for barcode %s: %d units", barcode, stock);
     }
