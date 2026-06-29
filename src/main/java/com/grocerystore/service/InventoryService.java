@@ -3,7 +3,9 @@ package com.grocerystore.service;
 import com.grocerystore.exception.InsufficientStockException;
 import com.grocerystore.exception.ItemNotFoundException;
 import com.grocerystore.repository.InventoryRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class InventoryService {
     private final InventoryRepository inventoryRepository;
     private final CatalogService catalogService;

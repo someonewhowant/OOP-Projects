@@ -19,8 +19,8 @@
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/repository/impl/OrderRepositoryImpl.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/discount/DiscountCriteria.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/discount/FixedAmountDiscountStrategy.java
-/home/admin/oop/grocerystore/src/main/java/com/grocerystore/GroceryStoreSystem.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/repository/InventoryRepository.java
+/home/admin/oop/grocerystore/src/main/java/com/grocerystore/GroceryStoreSystem.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/service/CatalogService.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/repository/impl/ItemRepositoryImpl.java
 /home/admin/oop/grocerystore/src/main/java/com/grocerystore/repository/OrderRepository.java

@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Checkout {
     private final CatalogService catalogService;
     private final InventoryService inventoryService;

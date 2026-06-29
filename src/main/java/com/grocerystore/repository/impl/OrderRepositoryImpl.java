@@ -12,6 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class OrderRepositoryImpl implements OrderRepository {
     @Override
     public void save(Order order) {

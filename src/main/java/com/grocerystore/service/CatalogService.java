@@ -3,9 +3,11 @@ package com.grocerystore.service;
 import com.grocerystore.exception.ItemNotFoundException;
 import com.grocerystore.model.Item;
 import com.grocerystore.repository.ItemRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class CatalogService {
     private final ItemRepository itemRepository;
 

@@ -14,22 +14,20 @@ import com.grocerystore.repository.impl.OrderRepositoryImpl;
 import com.grocerystore.service.CatalogService;
 import com.grocerystore.service.InventoryService;
 
+import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 
+@Service
 public class GroceryStoreSystem {
     private final CatalogService catalogService;
     private final InventoryService inventoryService;
     private final Checkout checkout;
 
-    public GroceryStoreSystem() {
-        // Dependency Injection
-        ItemRepository itemRepository = new ItemRepositoryImpl();
-        InventoryRepository inventoryRepository = new InventoryRepositoryImpl();
-        OrderRepository orderRepository = new OrderRepositoryImpl();
-        
-        this.catalogService = new CatalogService(itemRepository);
-        this.inventoryService = new InventoryService(inventoryRepository, this.catalogService);
-        this.checkout = new Checkout(this.catalogService, this.inventoryService, orderRepository);
+    public GroceryStoreSystem(CatalogService catalogService, InventoryService inventoryService, Checkout checkout) {
+        this.catalogService = catalogService;
+        this.inventoryService = inventoryService;
+        this.checkout = checkout;
     }
 
     public void addItemToCatalog(Item item) {
